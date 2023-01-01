@@ -1,0 +1,80 @@
+function apartmentHunting(blocks, reqs) {
+  // Write your code here.
+
+  let nearestBuildings = 0;
+
+  let distance = Number.MAX_VALUE;
+
+  for (let i = 0; i < blocks.length; i++) {
+    let maxDistance = 0;
+
+    for (let j = 0; j < reqs.length; j++) {
+      let distance = 0;
+
+      let buildingFound = false;
+
+      for (let k = i; k < blocks.length; k++) {
+        /* if block k and reqs j is*/
+        if (blocks[k][reqs[j]]) {
+          buildingFound = true;
+          distance = k - i;
+          break;
+        }
+      }
+      if (!buildingFound) {
+        for (let k = i; k >= 0; k--) {
+          if (blocks[k][reqs[j]]) {
+            buildingFound = true;
+            distance = i - k;
+            break;
+          }
+        }
+      }
+      if (distance > maxDistance) {
+        maxDistance = distance;
+      }
+    }
+    if (maxDistance < distance) {
+      distance = maxDistance;
+      nearestBuildings = i;
+    }
+  }
+
+  return nearestBuildings;
+}
+
+const blocks = [
+  {
+    gym: false,
+    school: true,
+    store: false,
+  },
+  {
+    gym: true,
+    school: false,
+    store: false,
+  },
+  {
+    gym: true,
+    school: true,
+    store: false,
+  },
+  {
+    gym: false,
+    school: true,
+    store: false,
+  },
+  {
+    gym: false,
+    school: true,
+    store: true,
+  },
+];
+
+const reqs = ['gym', 'school', 'store'];
+
+const nearestBlock = apartmentHunting(blocks, reqs);
+console.log(nearestBlock);
+
+// Do not edit the line below.
+exports.apartmentHunting = apartmentHunting;
