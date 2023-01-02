@@ -1,0 +1,25 @@
+First, we have to create an apartment-hunting function. In this function we are taking 2 parameters: The first parameter is Block and the second is a requirement(reqs).  
+here, we are taking a nearest building which is 0(zero), now the maximum value of distance i.e MAX_VALUE   
+Now, as we have already run the loop, we are going to run the loop inside the length of the blocks. Take a MAX distance which is currently at 0(zero). 
+Now again creating a loop and running it into the reqs time
+Distance is 0(zero) & building found is 0z(zero) because we didn't find any building currently. 
+Again coming into the loop of blocks k times. Inside it, we are checking if the number of blocks and reqs of blocks are matched. Then, the building found is true and the distance is k-i,  If none of the blocks contain any of the required buildings, the function returns -1.
+if the building is not found then we are again coming into the loop which checks k=i(length of block), k >= 0 (zero), then, inside the loop, we check for block 'k' & reqs 'j', if it got matched then the building found is true and distance is i-k, then, we break the loop. 
+if distance > MAX_DISTANCE, we set the value of its as the same as distance. 
+if MAX_DISTANCE < maxDistance value, Then we set its value at max distance value which is maxDistance & then we are setting the nearest building value at 'i' 
+Now, we are returning the nearest building to a function.
+
+Here is an example of how you can use this function:
+
+const blocks = [
+  { gym: false, school: true, store: false },
+  { gym: true, school: false, store: false },
+  { gym: true, school: true, store: false },
+  { gym: false, school: true, store: false },
+  { gym: false, school: true, store: true }
+];
+const reqs = ['gym', 'school', 'store'];
+const optimalBlock = findOptimalBlock(blocks, reqs);
+console.log(optimalBlock);  // Output: 3
+
+In this example, the farthest distance to any of the required buildings from the fourth block is 1, which is the minimum among all blocks. The function returns 3, which is the index of the fourth block.
